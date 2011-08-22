@@ -1,4 +1,4 @@
-module GenomeDb	
+module GenomeDB	
 	
 	class Dna < DBConnection
 		has_many :genes
