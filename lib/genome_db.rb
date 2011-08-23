@@ -1,5 +1,5 @@
 require 'rubygems'
-require 'activerecord'
+require 'active_record'
 require 'composite_primary_keys'
 
 gem 'activerecord', '>= 3.0'

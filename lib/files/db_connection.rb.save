@@ -1,0 +1,31 @@
+Genome_DB_ADAPTER = 'postgresql'
+Genome_DB_HOST = 'localhost'
+
+Genome_DB_USERNAME = 'tools'
+Genome_DB_PASSWORD = 'analysis'
+
+module GenomeDB
+    
+		require 'composite_primary_keys'
+    
+    include ActiveRecord
+    
+    class DBConnection < ActiveRecord::Base
+      self.abstract_class = true
+    	self.pluralize_table_names = false
+    	
+      def self.connect(species)
+
+        establish_connection(
+                              :adapter => Genome_DB_ADAPTER,
+                              :host => Genome_DB_HOST,
+                              :database => species,
+                              :username => Genome_DB_USERNAME,
+                              :password => Genome_DB_PASSWORD
+                              #:port => port
+                            )
+      end
+      
+    end # class
+
+end # module
