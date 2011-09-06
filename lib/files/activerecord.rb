@@ -22,6 +22,7 @@ module GenomeDB
    	 	belongs_to :dna, :foreign_key => "dna_id"
     	has_many :transcripts
     	has_many :xref_gene_external_dbs
+    	has_many :xref_gene_samples
       
     	def slice
     		return Slice.new(self.dna,self.start,self.stop,self.strand)
@@ -131,7 +132,15 @@ module GenomeDB
     	belongs_to :external_db, :foreign_key => "external_db_id"
     end
     
+    class Sample < DBConnection
+    	has_many :xref_gene_samples
+    end
     
+    class XrefGeneSample < DBConnection
+    	belongs_to :gene, :foreign_key => "gene_id"
+    	belongs_to :sample, :foreign_key => "sample_id"
+    end
+    	
     class Slice
       
       	attr_reader :dna, :start, :stop, :strand
